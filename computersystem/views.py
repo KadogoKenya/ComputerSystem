@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import ComputerForm
 from .models import Computer
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -53,3 +54,19 @@ def computer_list(request):
 
 
     return render(request,'computer/computer_list.html',context)
+
+
+def computer_edit(request, id=None):
+    instance=get_object_or_404(Computer, id=id)
+    form = ComputerForm(request.POst or None ,instance = instance)
+    if form.is.valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return redirect ('computers')
+
+    context = {
+        'instance':instance,
+        'form':form
+    }
+
+    return render(request,'computer_entry.html', context)
