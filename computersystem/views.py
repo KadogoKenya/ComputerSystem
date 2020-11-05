@@ -11,15 +11,23 @@ def index(request):
     return render(request, 'computer/index.html')
 
 def computers(request):
+    
     computers=Computer.objects.all()
     computers=computers[::-1]
 
     form = ComputerSearchForm(request.POST or None)
-
     context={
         'computers':computers,
         'form':form
     }
+    if request.method == 'POST':
+        computers=Computer.objects.all().order_by('posted_date').filter(computer_name_incontains=form['computer_name'].value())
+
+
+        context={
+            'computers':computers,
+            'form':form
+        }
 
     return render(request,'computer/computers.html',context)
 
@@ -30,6 +38,7 @@ def computer_entry(request):
     profile = request.user.profile
 
     if request.method == 'POST':
+        
         form = ComputerForm(request.POST, request.FILES)
         if form.is_valid():
             computer = form.save(commit=False)
