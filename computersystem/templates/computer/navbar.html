@@ -1,0 +1,44 @@
+{% load static %}
+{% load bootstrap3 %}
+    
+  <header id="header">
+    <div class="header-main">
+        <div class="box-left">
+            <div class="item bt-menu">
+                <div class="ico-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <span class="has-tablet">MENU</span>
+            </div>
+        </div>
+        <div class="box-right">
+            <form class="form-inline active-purple-4">
+                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                  aria-label="Search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </form>
+          
+                <a href="{% url 'new-tutorial' %}" class="btn btn-lg btn-outline-success"><span>Add Tutorial</span>
+
+            {% if user.is_authenticated %}
+
+            <a href="{% url 'display_profile' %}" class="nav-item-nav-link mr-5" style="color: black">
+               <i>{{ user | upper}}</i>
+                <i class="far fa-user-circle fa-2x"></i>
+            </a>
+           
+            {% else %}
+            <div>
+                <strong><a class="text-black" href="{% url 'register' %}">Register </a></strong> |
+                <strong><a class="text-black" href="{% url 'login' %}"> log in</a></strong>                
+            </div>
+            <div></div>
+            <div></div>
+            
+
+            {% endif %}   
+        </div>
+    </div>
+</header>
