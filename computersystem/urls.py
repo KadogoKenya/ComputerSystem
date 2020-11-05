@@ -3,12 +3,16 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from computersystem.views import computers,computer_entry,index
 
 
 urlpatterns = [
     
     path('', views.index, name='index'),
-    path(r'^computers', views.computers, name='computers'),
+    path('computers', views.computers, name='computers'),
+    path('computer_entry', views.computer_entry, name='computer_entry'),
+
+
 ]
 
 if settings.DEBUG:

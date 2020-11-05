@@ -20,14 +20,22 @@ def computers(request):
     return render(request,'computer/computers.html',context)
 
 def computer_entry(request):
-    title=Add computer
+    title='Add computer'
     # form = ComputerForm(request.POST or None)
-    if request.method == 'POST':
-        form = ComputerForm(request.POST)
-        if form.is_valid():
-            context={
-                'title':title,
-                'form':form,
-            }
+    current_user = request.user
+    profile = request.user.profile
 
-    return render(request,'computer/computer_entry.html',context)
+    if request.method == 'POST':
+        form = ComputerForm(request.POST, request.FILES)
+        if form.is_valid():
+            computer = form.save(commit=False)
+            computer.Admin = current_user
+            computer.admin_profile = profile
+            computer.save()
+        return redirect('index')
+
+    else:
+        
+        form = ComputerForm()
+
+    return render(request,'computer/computer_entry.html',{"form":form})
