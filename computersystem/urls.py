@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
-from computersystem.views import computers,computer_entry,index,computer_list
+from computersystem.views import computers,computer_entry,index,computer_list,operating_system
 
 
 urlpatterns = [
@@ -14,6 +14,8 @@ urlpatterns = [
     path('computer_list', views.computer_list, name='computer_list'),
     url(r'^computers/(?P<id>\d+)/$', views.computer_edit, name='computer_edit'),
     url(r'^computers/(?P<id>\d+)/delete$', views.computer_delete, name='computer_delete'),
+    path('operating_system', views.operating_system, name='operating_system'),
+
 
 # r'^(?P<album_id>[0-9])/$'
 

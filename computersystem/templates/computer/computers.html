@@ -58,7 +58,7 @@
                         {% for computers in computers %}
                         <tr>
                             <td>{{ forloop.counter}}</td>
-                            <td> <a href=" {% url 'computer_edit' id=computers.id %} ">{{ computers.computer_name}}</a> </td>
+                            <td> <a href=" {% url 'computer_edit' id=computers.id %} " data-toggle="tooltip" title="edit this item">{{ computers.computer_name}}</a> </td>
                             <td>{{ computers.Operating_system}}</td>
                             <td>{{ computers.Ip_address}}</td>  
                             <td>{{ computers.Mac_address}}</td>
@@ -66,7 +66,7 @@
                             <td>{{ computers.location}}</td>
                             <td>{{computers.posted_date}}</td>
                             <td>{{computers.purchase_date}}</td>
-                            <td> <a href=" {% url 'computer_delete' id=computers.id %} ">Delete</a> </td>
+                            <td> <a href=" {% url 'computer_delete' id=computers.id %} " data-toggle="tooltip" title="delete this item"><i class="far fa-trash-alt" style="color: tomato; align-items: center;"></i></a> </td>
 
                         </tr>
                         {% endfor %}
