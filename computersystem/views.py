@@ -32,7 +32,7 @@ def computer_entry(request):
             computer.Admin = current_user
             computer.admin_profile = profile
             computer.save()
-        return redirect('index')
+        return redirect('computers')
 
     else:
         

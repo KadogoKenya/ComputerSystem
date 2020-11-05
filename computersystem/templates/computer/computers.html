@@ -2,46 +2,49 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container" style="font-size: large;">
+<div class="container p-5" style="font-size: large;">
     
    
-    <div class="row">
+<div class="row">
 
-<div class="col-md-8">
-        <h2>Computer Management system</h2>
-        <div class="table-responsive">
-            <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead class="blue white-text">
-                    <tr class="font-weight-bold">
+    <div class="col-md-12">
+            <h2 class="title" style="text-align: center;"><b>Computer Management System</b></h2>
+            <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead class="blue white-text">
+                        <tr class="font-weight-bold">
 
-                        <th class="th-sm">#</th>
-                        <th class="th-sm">Computer Name</th>
-                        <th class="th-sm">Ip Address</th>
-                        <th class="th-sm">Mac Address</th>
-                        <th class="th-sm">Users</th>
-                        <th class="th-sm">LOcation</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for computers in computers %}
-                    <tr>
-                        <td>{{ forloop.counter}}</td>
-                        <td>{{ computers.computer_name}}</td>
-                        <td>{{ computers.Ip_address}}</td>
-                        
-                        <td>{{ computers.Mac_address}}</td>
+                            <th class="th-sm">#</th>
+                            <th class="th-sm">Computer Name</th>
+                            <th class="th-sm">Ip Address</th>
+                            <th class="th-sm">Mac Address</th>
+                            <th class="th-sm">Users</th>
+                            <th class="th-sm">LOcation</th>
+                            <th class="th-lg">Posted date</th>
+                            <th class="th-lg">Purchase date</th>
 
-                        <td>{{ computers.user}}</td>
-                        <td>{{ computers.location}}</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for computers in computers %}
+                        <tr>
+                            <td>{{ forloop.counter}}</td>
+                            <td>{{ computers.computer_name}}</td>
+                            <td>{{ computers.Ip_address}}</td>  
+                            <td>{{ computers.Mac_address}}</td>
+                            <td>{{ computers.user}}</td>
+                            <td>{{ computers.location}}</td>
+                            <td>{{computers.posted_date}}</td>
+                            <td>{{computers.purchase_date}}</td>
 
-                    </tr>
-                    {% endfor %}
+                        </tr>
+                        {% endfor %}
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 {% endblock %}
