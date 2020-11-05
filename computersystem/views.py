@@ -39,3 +39,17 @@ def computer_entry(request):
         form = ComputerForm()
 
     return render(request,'computer/computer_entry.html',{"form":form})
+
+def computer_list(request):
+    title='List of all computers'
+    # form = ComputerForm(request.POST or None)
+    current_user = request.user
+    profile = request.user.profile
+
+    computers=Computer.objects.all()
+    context = {
+        'computers':computers
+    }
+
+
+    return render(request,'computer/computer_list.html',context)

@@ -14,6 +14,7 @@
                 <thead class="blue white-text">
                     <tr class="font-weight-bold">
 
+                        <th class="th-sm">#</th>
                         <th class="th-sm">Computer Name</th>
                         <th class="th-sm">Ip Address</th>
                         <th class="th-sm">Mac Address</th>
@@ -25,13 +26,14 @@
                 <tbody>
                     {% for computers in computers %}
                     <tr>
-                        <td>{{ computers.compuer_name}}</td>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{ computers.computer_name}}</td>
                         <td>{{ computers.Ip_address}}</td>
                         
                         <td>{{ computers.Mac_address}}</td>
 
                         <td>{{ computers.user}}</td>
-                        <td>{{ neighbourhoods.location}}</td>
+                        <td>{{ computers.location}}</td>
 
                     </tr>
                     {% endfor %}
