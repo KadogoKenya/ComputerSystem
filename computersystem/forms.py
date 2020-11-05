@@ -13,3 +13,8 @@ class ComputerForm(forms.ModelForm):
     class Meta:
         model = Computer
         fields=['computer_name','Ip_address','Mac_address','user','location','purchase_date']
+
+class ComputerSearchForm(forms.ModelForm):
+    class Meta:
+        model = Computer
+        fields=['computer_name','user']
