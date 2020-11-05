@@ -58,8 +58,8 @@ def computer_list(request):
 
 def computer_edit(request, id=None):
     instance=get_object_or_404(Computer, id=id)
-    form = ComputerForm(request.POst or None ,instance = instance)
-    if form.is.valid():
+    form = ComputerForm(request.POST or None ,instance = instance)
+    if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
         return redirect ('computers')
@@ -69,4 +69,12 @@ def computer_edit(request, id=None):
         'form':form
     }
 
-    return render(request,'computer_entry.html', context)
+    return render(request,'computer/computer_entry.html', context)
+
+def computer_delete(request, id=None):
+    instance=get_object_or_404(Computer, id=id)
+    # form = ComputerForm(request.POST or None ,instance = instance)
+    # if form.is_valid():
+    #     instance = form.save(commit=False)
+    instance.delete()
+    return redirect ('computers')

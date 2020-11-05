@@ -22,6 +22,7 @@
                             <th class="th-sm">LOcation</th>
                             <th class="th-lg">Posted date</th>
                             <th class="th-lg">Purchase date</th>
+                            <th class="th-lg">Delete</th>
 
                             
                         </tr>
@@ -30,13 +31,14 @@
                         {% for computers in computers %}
                         <tr>
                             <td>{{ forloop.counter}}</td>
-                            <td>{{ computers.computer_name}}</td>
+                            <td> <a href=" {% url 'computer_edit' id=computers.id %} ">{{ computers.computer_name}}</a> </td>
                             <td>{{ computers.Ip_address}}</td>  
                             <td>{{ computers.Mac_address}}</td>
                             <td>{{ computers.user}}</td>
                             <td>{{ computers.location}}</td>
                             <td>{{computers.posted_date}}</td>
                             <td>{{computers.purchase_date}}</td>
+                            <td> <a href=" {% url 'computer_delete' id=computers.id %} ">Delete</a> </td>
 
                         </tr>
                         {% endfor %}
