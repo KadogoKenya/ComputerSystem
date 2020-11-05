@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Computer
+from . models import Computer,Operatingsystem
 from. forms import ComputerForm
 
 # Register your models here.
@@ -12,3 +12,4 @@ class ComputerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Computer, ComputerAdmin)
+admin.site.register(Operatingsystem)

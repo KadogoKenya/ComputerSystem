@@ -2,10 +2,24 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container p-5" style="font-size: large;">
+<div class="container-fluid p-5" style="font-size: large;">
     
    
 <div class="row">
+
+    <div class="jumbotron">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}">
+            {% endif %} {{message}}
+        </li>
+        {% endfor %}
+
+        {% endif %}
+
+        </ul>
+    </div>
 
     <div class="col-md-12">
             <h2 class="title" style="text-align: center;"><b>Computer Management System</b></h2>
@@ -27,6 +41,7 @@
 
                             <th class="th-sm">#</th>
                             <th class="th-sm">Computer Name</th>
+                            <th class="th-sm">Operating System</th>
                             <th class="th-sm">Ip Address</th>
                             <th class="th-sm">Mac Address</th>
                             <th class="th-sm">Users</th>
@@ -43,6 +58,7 @@
                         <tr>
                             <td>{{ forloop.counter}}</td>
                             <td> <a href=" {% url 'computer_edit' id=computers.id %} ">{{ computers.computer_name}}</a> </td>
+                            <td>{{ computers.Operating_system}}</td>
                             <td>{{ computers.Ip_address}}</td>  
                             <td>{{ computers.Mac_address}}</td>
                             <td>{{ computers.user}}</td>
