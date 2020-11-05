@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     
     path('', views.index, name='index'),
+    path(r'^computers', views.computers, name='computers'),
 ]
 
 if settings.DEBUG:
