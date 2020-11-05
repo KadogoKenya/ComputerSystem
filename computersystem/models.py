@@ -1,8 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
+import cloudinary
+import cloudinary.uploader
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
-class Computer(models.Models):
+class Computer(models.Model):
     computer_name=models.CharField(max_length=30)
     Ip_address=models.CharField(max_length=20)
     Mac_address=models.CharField(max_length=30)
