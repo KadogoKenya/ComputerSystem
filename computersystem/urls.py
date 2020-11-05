@@ -12,6 +12,7 @@ urlpatterns = [
     path('computers', views.computers, name='computers'),
     path('computer_entry', views.computer_entry, name='computer_entry'),
     path('computer_list', views.computer_list, name='computer_list'),
+    path('computers/(?p<id>\d+)/', views.computer_edit, name='computer_edit'),
 
 
 ]
