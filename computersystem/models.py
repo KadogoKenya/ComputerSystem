@@ -4,6 +4,7 @@ import cloudinary
 import cloudinary.uploader
 from cloudinary.models import CloudinaryField
 
+
 # Create your models here.
 
 class Computer(models.Model):

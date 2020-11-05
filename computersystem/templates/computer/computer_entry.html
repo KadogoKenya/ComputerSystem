@@ -1,0 +1,14 @@
+{% extends 'computer/base.html' %}
+{% load cloudinary %}
+{%load static%}
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-sm btn-info ">New Computer</button>
+    </form>
+</div>
+{% endblock %}
