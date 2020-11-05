@@ -1,6 +1,6 @@
-{% extends 'tutorial/base.html' %}
+{% extends 'computer/base.html' %}
 <!-- {% load cloudinary %} -->
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 {% block content %}
 
@@ -8,11 +8,9 @@
 <div class="media row p-5">
 
     <div class="col-md-5 p-5">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }} " style="width: 75px;height: 75px;"><br><br>
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }} " style="width: 300px;height: 300px;"><br><br>
         
-        <div class="btn btn-sm btn-outline-secondary mr-3 text-secondary">
-            <a class=""href="{% url 'tutorialproject_api' %}">Tutorials Api Endpoints</a>
-        </div>
+        
 
     </div>
     <div class="col-md-7 mt-3">

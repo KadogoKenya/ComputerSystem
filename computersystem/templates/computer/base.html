@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load cloudinary %}
 {% load static %}
 
@@ -8,9 +8,9 @@
 <head>
     <meta charset="UTF-8">
     {% if title %}
-    <title>Project Tutorial - {{title}}</title>
+    <title>Compuer System - {{title}}</title>
     {% else %}
-    <title> Project Tutorial </title>
+    <title> Compuer System </title>
     {% endif %}
 
 
@@ -28,7 +28,7 @@
 </head>
 
 <body>
-        {% include 'navbar.html' %}
+        {% include 'computer/navbar.html' %}
         {% block content %}
 
       
