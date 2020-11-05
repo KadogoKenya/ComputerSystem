@@ -35,41 +35,4 @@
 
     </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            {% for tutorial in tutorials %}
-            <div class="col-md-3 mb-4 p-5">
-                <div class="card">
-
-                    <div class="view overlay zoom">
-                        <img class="card-img-top view-overlay-zoom" height="500px" src="{{tutorial.image.url}}" alt="Card image cap">
-
-                        <div class="mask flex-center">
-                            <h2 class="white-text">Tutorial Community</h2>
-                        </div>
-                    </div>
-                    
-                    <!-- <img class="card-img-top view-overlay-zoom" height="500px" src="{{tutorial.image.url}}" alt="Card image cap"> -->
-                   
-                    <div class="card-body">
-                        <p class="card-text"><strong>Title : </strong>{{tutorial.title}}</p>
-                        <p class="card-text"><strong>Description : </strong>{{tutorial.description}}</p>
-                        <p class="card-text"><strong>Content</strong>: {{tutorial.content}}</p>
-
-                        <p class="card-text"><strong>Author </strong>{{tutorial.Author}}</p>
-                        <p class="card-text"><strong>Published Date : </strong>{{tutorial.pub_date}}</p>
-                        <p class="card-text"><strong>Date Updated</strong>: {{tutorial.updated_date}}</p>
-
-                        <p class="card-text"><strong>Published: </strong>{{tutorial.Published}}</p>
-                        <p class="card-text"><strong>Unpublished</strong>: {{tutorial.Unpublished}}</p>
-    
-                        <a class="float-right" href="{{ tutorial.url }}" target="_blank">View Site</a>
-                        
-    
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
 {% endblock %}
