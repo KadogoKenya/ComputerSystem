@@ -24,6 +24,12 @@ from django.contrib.auth import views as auth_views
 # from rest_framework.authtoken.views import obtain_auth_token
 from computersystem import views
 
+from django.contrib.auth import views as auth_views
+from rest_framework.authtoken.views import obtain_auth_token
+from computersystem.views import ComputerList
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('computersystem.urls')),
@@ -32,4 +38,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('display_profile/', user_views.display_profile, name='display_profile'),
+    path('projector-api/', views.ComputerList.as_view(), name='projector_api'),
 ]

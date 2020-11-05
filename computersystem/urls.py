@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^computers/(?P<id>\d+)/$', views.computer_edit, name='computer_edit'),
     url(r'^computers/(?P<id>\d+)/delete$', views.computer_delete, name='computer_delete'),
     path('operating_system', views.operating_system, name='operating_system'),
+    url(r'^api/computer/$', views.ComputerList.as_view()),
 
 
 # r'^(?P<album_id>[0-9])/$'

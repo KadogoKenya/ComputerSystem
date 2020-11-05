@@ -1,16 +1,22 @@
 from django.shortcuts import render,redirect
 from .forms import ComputerForm,ComputerSearchForm,OperatingsystemForm
-from .models import Computer
+from .models import Computer,Operatingsystem
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ComputerSerializer
 
 
 # Create your views here.
 
-
+@login_required(login_url='/login/')
 def index(request):
     return render(request, 'computer/index.html')
 
+
+@login_required(login_url='/login/')
 def computers(request):
     
     computers=Computer.objects.all()
@@ -32,6 +38,8 @@ def computers(request):
 
     return render(request,'computer/computers.html',context)
 
+
+@login_required(login_url='/login/')
 def computer_entry(request):
     title='Add computer'
     # form = ComputerForm(request.POST or None)
@@ -56,6 +64,8 @@ def computer_entry(request):
 
     return render(request,'computer/computer_entry.html',{"form":form})
 
+
+@login_required(login_url='/login/')
 def computer_list(request):
     title='List of all computers'
     # form = ComputerForm(request.POST or None)
@@ -70,7 +80,7 @@ def computer_list(request):
 
     return render(request,'computer/computer_list.html',context)
 
-
+@login_required(login_url='/login/')
 def computer_edit(request, id=None):
     instance=get_object_or_404(Computer, id=id)
     form = ComputerForm(request.POST or None ,instance = instance)
@@ -89,6 +99,8 @@ def computer_edit(request, id=None):
 
     return render(request,'computer/computer_entry.html', context)
 
+
+@login_required(login_url='/login/')
 def computer_delete(request, id=None):
     instance=get_object_or_404(Computer, id=id)
     # form = ComputerForm(request.POST or None ,instance = instance)
@@ -97,6 +109,8 @@ def computer_delete(request, id=None):
     instance.delete()
     return redirect ('computers')
 
+
+@login_required(login_url='/login/')
 def operating_system(request):
     title='Add Operating system'
     # form = ComputerForm(request.POST or None)
@@ -120,3 +134,10 @@ def operating_system(request):
         form = OperatingsystemForm()
 
     return render(request,'computer/operating_system.html',{"form":form})
+
+
+class ComputerList(APIView):
+    def get(self, request, format=None):
+        all_merch = Computer.objects.all()
+        serializers = ComputerSerializer(all_merch, many=True)
+        return Response(serializers.data)
