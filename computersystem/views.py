@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import ComputerForm,ComputerSearchForm
 from .models import Computer
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 # Create your views here.
@@ -45,6 +46,8 @@ def computer_entry(request):
             computer.Admin = current_user
             computer.admin_profile = profile
             computer.save()
+
+            messages.success(request,'Successfully saved')
         return redirect('computers')
 
     else:
@@ -74,6 +77,9 @@ def computer_edit(request, id=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+
+        messages.success(request,'Successfully saved')
+
         return redirect ('computers')
 
     context = {
