@@ -7,6 +7,8 @@ from django.contrib import messages
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ComputerSerializer
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -42,7 +44,7 @@ def computers(request):
 @login_required(login_url='/login/')
 def computer_entry(request):
     title='Add computer'
-    # form = ComputerForm(request.POST or None)
+    form = ComputerForm(request.POST or None)
     current_user = request.user
     profile = request.user.profile
 
