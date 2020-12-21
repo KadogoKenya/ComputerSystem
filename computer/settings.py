@@ -92,6 +92,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     
     
+    
 ]
 
 MIDDLEWARE = [
