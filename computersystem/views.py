@@ -4,8 +4,8 @@ from .models import Computer,Operatingsystem
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from .serializer import ComputerSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
