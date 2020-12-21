@@ -140,6 +140,26 @@ def operating_system(request):
 
 class ComputerList(APIView):
     def get(self, request, format=None):
-        all_merch = Computer.objects.all()
-        serializers = ComputerSerializer(all_merch, many=True)
+        computers = Computer.objects.all()
+        serializers = ComputerSerializer(computers, many=True)
         return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializer = ComputerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        pk = self.kwargs.get('pk')
+        # appointments = self.get_object(pk)
+        computers = ComputerSerializer.filter(pk = pk)
+        computers.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, format=None):
+        serializer = ComputerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)

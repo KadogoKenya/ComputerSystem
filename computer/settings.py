@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'crispy_forms',
+    'rest_framework',
     'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
