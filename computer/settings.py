@@ -15,9 +15,52 @@ from decouple import config
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+# import datetime
+import time
+from datetime import datetime, date, time, timedelta
+# from datetime import datetime
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
+
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+# development
+if config('MODE')=="dev":
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
+       
+   }
+# production
+else:
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,9 +91,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'computersystem.apps.ComputersystemConfig',
     'users.apps.UsersConfig',
+    
+    
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,20 +130,44 @@ WSGI_APPLICATION = 'computer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'computers',
-        'USER': 'kate',
-        'PASSWORD':'Kanini12',
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'computers',
+#         'USER': 'kate',
+#         'PASSWORD':'Kanini12',
+#     }
+# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
+
 
 cloudinary.config( 
   cloud_name = config('Cloud_name'), 
   api_key = config('API_Key'),
   api_secret = config('API_Secret')
 )
+
+# Cloud_name=dew5ge1ch
+# API_Key=361751723152852
+# API_Secret=l2VlpcjUV6Nk9Gh9qi5UCwqDyZ4
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'dew5ge1ch',
+#     'API_KEY': '361751723152852',
+#     'API_SECRET': 'l2VlpcjUV6Nk9Gh9qi5UCwqDyZ4'
+# }
 
 
 # Password validation
@@ -148,6 +218,23 @@ STATICFILES_DIRS = [
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# configuring the location for media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
 
 MEDIA_URL = '/media/'

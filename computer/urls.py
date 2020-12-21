@@ -27,6 +27,7 @@ from computersystem import views
 from django.contrib.auth import views as auth_views
 from rest_framework.authtoken.views import obtain_auth_token
 from computersystem.views import ComputerList
+from rest_framework_simplejwt import views as jwt_views
 
 
 
@@ -39,4 +40,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('display_profile/', user_views.display_profile, name='display_profile'),
     path('projector-api/', views.ComputerList.as_view(), name='projector_api'),
+
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]

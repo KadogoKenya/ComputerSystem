@@ -17,6 +17,8 @@ class Operatingsystem(models.Model):
 
 
 class Computer(models.Model):
+    computer=CloudinaryField('computers/', blank=True)
+    #  CloudinaryField(upload_to = 'computers', default = 'default.jpg')
     computer_name=models.CharField(max_length=30)
     Operating_system=models.ForeignKey(Operatingsystem, on_delete=models.CASCADE, blank=True,null=True)
     Ip_address=models.CharField(max_length=20)
